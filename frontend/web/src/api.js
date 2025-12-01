@@ -1,6 +1,6 @@
 // frontend/web/src/api.js
 
-const API_BASE_URL = 'http://localhost:3000/api'; 
+const API_BASE_URL = 'https://projeto-mapeamento-lixo-fortaleza.onrender.com/api'; 
 const TOKEN_KEY = 'userToken';
 const USER_NAME_KEY = 'userName';
 
