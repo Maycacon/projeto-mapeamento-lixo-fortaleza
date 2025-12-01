@@ -51,8 +51,8 @@ cd projeto-mapeamento-lixo-fortaleza
 
 # 2. Configurar o Backend
 cd backend
-# ... (Instruções detalhadas para instalar dependências, configurar o .env e migrar o schema.sql)
+# npm start
 
 # 3. Configurar o Frontend
-cd ../frontend/mobile
-# ... (Instruções detalhadas para instalar dependências e iniciar o aplicativo)
+cd frontend
+# live server
