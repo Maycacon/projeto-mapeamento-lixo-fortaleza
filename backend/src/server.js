@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
     res.send('API do Mapeamento Inteligente de Resíduos Urbanos (MIRU) está funcionando!');
 });
 
-[cite_start]// 5. Tratamento de Erro Global (Requisito 5: Implementar tratamento de erros [cite: 27])
+// 5. Tratamento de Erro Global (Requisito 5: Implementar tratamento de erros [cite: 27])
 // Middleware para lidar com erros não capturados
 app.use((err, req, res, next) => {
     console.error(err.stack);
