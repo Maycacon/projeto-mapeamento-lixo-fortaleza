@@ -10,10 +10,10 @@
 
 | Funcionalidade | Descrição | Status de Implementação |
 | :--- | :--- | :--- |
-| **Registro de Denúncias** | Cidadãos podem registrar denúncias com fotos e localização.  | *Em andamento* |
-| **Visualização em Mapa** | Exibição geoespacial dos pontos de descarte para monitoramento. | *Em andamento* |
-| **Login/Autenticação** | Gerenciamento de usuários (`User`) e acesso seguro ao sistema.  | *Em andamento* |
-| **Gestão de Reports** | Funcionalidade para o backend gerenciar e atualizar o status dos reports (`Report`).  | *Em andamento* |
+| **Registro de Denúncias** | Cidadãos podem registrar denúncias com fotos e localização.  | *FEITO* |
+| **Visualização em Mapa** | Exibição geoespacial dos pontos de descarte para monitoramento. | *FEITO* |
+| **Login/Autenticação** | Gerenciamento de usuários (`User`) e acesso seguro ao sistema.  | *FEITO* |
+| **Gestão de Reports** | Funcionalidade para o backend gerenciar e atualizar o status dos reports (`Report`).  | *FEITO* |
 
 _(Nota: As capturas de tela das telas principais e o status final de implementação serão adicionados após a conclusão do Frontend.)_
 
