@@ -1,37 +1,35 @@
-// backend/src/config/db.js
+// backend/src/config/db.js (Configuração FINAL e CORRETA para RENDER)
 
 const { Pool } = require('pg');
 require('dotenv').config(); 
 
-// Configurações de Conexão com o PostgreSQL
+// A variável DATABASE_URL é fornecida automaticamente pelo Render.
+// Em ambiente local, usaremos a conexão padrão que falhou.
+// Em ambiente de produção (Render), usaremos a DATABASE_URL.
+
 const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD, // Lerá a senha do .env
-    port: process.env.DB_PORT || 5432,
-    // Configuração para produção (se o deploy for feito em um serviço como Heroku)
+    // Verifica se estamos em produção e usa a string de conexão completa
+    // fornecida pelo Render. Caso contrário, usa as variáveis locais (para o DB_USER, etc).
+    connectionString: process.env.NODE_ENV === 'production' 
+        ? process.env.DATABASE_URL 
+        : `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+        
+    // Configuração SSL é obrigatória para o Render (conexão segura)
     ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
 
 // ------------------------------------------------------------------
-// LÓGICA DE DEBUG: EXIBE ERRO OU SUCESSO NO CONSOLE
+// LÓGICA DE DEBUG
 // ------------------------------------------------------------------
 
-// Evento disparado quando a conexão é estabelecida
 pool.on('connect', () => {
     console.log('✅ Conexão com o PostgreSQL bem-sucedida!');
 });
 
-// Evento disparado quando há uma falha de conexão (ex: senha ou credencial errada)
 pool.on('error', (err) => {
-    // ESTA MENSAGEM IRÁ APARECER NO TERMINAL SE A CONEXÃO FALHAR.
     console.error('❌ ERRO CRÍTICO DE CONEXÃO COM O BANCO:', err.message);
-    // Removemos o 'process.exit(-1)' para que o servidor Node.js continue rodando,
-    // mas sabemos que a API NÃO VAI FUNCIONAR enquanto este erro for exibido.
 });
 
-// Exporta o pool para que os controllers possam executar queries
 module.exports = {
     query: (text, params) => pool.query(text, params),
 };
