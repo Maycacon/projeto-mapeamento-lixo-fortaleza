@@ -1,13 +1,14 @@
-# 🏗️ Arquitetura Final Implementada - MIRU
+# 🔌 Documentação da API RESTful - MIRU
 
-## 1. Visão Geral
-O sistema opera sob uma arquitetura Cliente-Servidor. O Frontend Web e Mobile se comunica com o Backend monolítico via APIs RESTful. O sistema está implantado e acessível publicamente.
+## Base URL (Exemplo de Produção)
+`https://fortaleza.vercel.app/api/`
 
-## 2. Componentes e Tecnologias
-* **Frontend (Web/Mobile):** HTML, CSS (Bootstrap), JavaScript Puro (Web) e React Native (Mobile).
-* **Backend (API):** Node.js com Express.
-* **Banco de Dados:** PostgreSQL com a extensão PostGIS para a manipulação de dados geoespaciais (latitude e longitude das denúncias).
-* **Autenticação:** Token JWT (JSON Web Token) e Middleware de verificação.
+## 1. Autenticação
+* **Endpoint:** `POST /auth/login`
+* **Retorno:** Objeto contendo o Token JWT (JSON Web Token) e dados básicos do usuário.
 
-## 3. Fluxo de Dados Geolocalizados (PostGIS)
-O sistema utiliza PostGIS para salvar a localização das denúncias na coluna `location` do tipo `GEOMETRY`. A conversão de PostGIS para Lat/Long ocorre na API (`ReportController`) antes de enviar os dados para o Frontend.
+## 2. Denúncias (Reports)
+* **Endpoint:** `POST /reports` (Protegida por Token)
+* **Função:** Cria uma nova denúncia, inserindo coordenadas no formato GEOMETRY(Point, 4326) no banco de dados.
+* **Endpoint:** `GET /reports` (Protegida por Token)
+* **Função:** Lista todas as denúncias, convertendo dados PostGIS de volta para Lat/Long para exibição no mapa.
